@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  myDB:
+    image: postgres:15.3
+    container_name: my-database
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=jose
+      - POSTGRES_PASSWORD=12345678
+      - POSTGRES_DB=sql-course-db
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+  
+  # pdAdmin:
+  #   image: dpage/pgadmin4
+  #   container_name: pgadmin4
+  #   restart: always
+  #   depends_on:
+  #     - myDB
+  #   ports:
+  #     - 8080:80
+  #   environment:
+  #     - PGADMIN_DEFAULT_EMAIL=jose@gmail.com
+  #     - PGADMIN_DEFAULT_PASSWORD=12345678
+  #   volumes:
+  #     - ./pgadmin:/var/lib/pgadmin
+  #     - ./pgadmin:/certs/server.cert
+  #     - ./pgadmin:/certs/server.key
+  #     - ./pgadmin:/pgadmin4/servers.json
